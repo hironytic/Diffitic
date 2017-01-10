@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Diffitic"
-  s.version      = "0.1"
+  s.version      = "0.1.0"
   s.summary      = ""
   s.description  = <<-DESC
     Your description here.
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = "10.9"
   s.watchos.deployment_target = "2.0"
   s.tvos.deployment_target = "9.0"
-  s.source       = { :git => "https://github.com/hironytic/Diffitic.git", :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/hironytic/Diffitic.git", :tag => "v#{s.version}" }
   s.source_files  = "Sources/**/*"
   s.frameworks  = "Foundation"
 end
