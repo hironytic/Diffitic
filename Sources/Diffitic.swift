@@ -38,25 +38,31 @@ public enum DiffType {
 
 // Note that each x, y in FPData equals to
 // index-of-shorter-sequence + 1, index-of-longer-sequence + 1.
-private struct FPData {
-    var y: Int      // y-coordinate of the furthest point (corresponding to fp[k] in Wu's algorithm)
-    var x: Int      // x-coordinate of the furthest point
-    let prevFPDataIndex: Int    // FPData located before snake (as index of fpDataVector)
+private class FPData {
+    let y: Int      // y-coordinate of the furthest point (corresponding to fp[k] in Wu's algorithm)
+    let x: Int      // x-coordinate of the furthest point
+    let prevFPData: FPData?    // FPData located before snake
+    
+    init(y: Int, x: Int, prevFPData: FPData?) {
+        self.y = y
+        self.x = x
+        self.prevFPData = prevFPData
+    }
 }
 
 // working storage for furthest point on diagonal k
 // (corresponding to fp in Wu's algorithm except that the value is (index-of-fpDataVector + 1).
 // if the value is 0, it meens "not computed" and is described as -1 in Wu's one.)
-private class FPBuffer {
+private class FurthestPoints {
     private let offset: Int
-    private var buffer: [Int]
+    private var buffer: [FPData?]
     
     public init(m: Int, n: Int) {
         offset = m + 1
-        buffer = Array(repeating: 0, count: m + n + 3)
+        buffer = Array(repeating: nil, count: m + n + 3)
     }
     
-    public subscript(index: Int) -> Int {
+    public subscript(index: Int) -> FPData? {
         get {
             return buffer[offset + index]
         }
@@ -70,15 +76,15 @@ private class DiffCore {
     let isSwapped: Bool // true if left is longer, false if right is longer
     let m: Int  // length of shorter sequence
     let n: Int  // length of longer sequence
-    var fpDataVector: [FPData] = [] // array to which generated FPData is added
-    let fp: FPBuffer
+    let fp: FurthestPoints
+    var lastFPData: FPData? = nil
     var result: [(DiffType, Int, Int, Int, Int)] = []
     
     init(leftCount: Int, rightCount: Int) {
         isSwapped = leftCount > rightCount
         m = (isSwapped) ? rightCount : leftCount
         n = (isSwapped) ? leftCount : rightCount
-        fp = FPBuffer(m: m, n: n)
+        fp = FurthestPoints(m: m, n: n)
     }
     
     // Detects differences.
@@ -106,10 +112,10 @@ private class DiffCore {
                 snake(k, equalityChecker)
             }
             
-            let fpDataIndexDelta = fp[delta] - 1
-            let fpDelta = (0 > fpDataIndexDelta) ? -1 : fpDataVector[fpDataIndexDelta].y
-            if fpDelta == n {
-                break
+            if let fpDelta = fp[delta] {
+                if fpDelta.y == n {
+                    break
+                }
             }
         }
         
@@ -120,37 +126,47 @@ private class DiffCore {
     // The "snake".
     // It does not only traverse diagnonal edges, but remember its path.
     func snake(_ k: Int, _ equalityChecker: (Int, Int) -> Bool) {
-        let fpDataIndex0 = fp[k - 1] - 1
-        let fpDataIndex1 = fp[k + 1] - 1
+        let fpData0 = fp[k - 1]
+        let fpData1 = fp[k + 1]
+  
+        let fpY0 = fpData0?.y ?? -1
+        let fpY1 = fpData1?.y ?? -1
         
-        let fpY0 = (0 > fpDataIndex0) ? -1 : fpDataVector[fpDataIndex0].y
-        let fpY1 = (0 > fpDataIndex1) ? -1 : fpDataVector[fpDataIndex1].y
+        var y: Int
+        let prevFPData: FPData?
+        if fpY0 + 1 > fpY1 {
+            y = fpY0 + 1
+            prevFPData = fpData0
+        } else {
+            y = fpY1
+            prevFPData = fpData1
+        }
+        var x = y - k
         
-        var data = (fpY0 + 1 > fpY1)
-            ? FPData(y: fpY0 + 1, x: fpY0 + 1 - k, prevFPDataIndex: fpDataIndex0)
-            : FPData(y: fpY1,     x: fpY1 - k,     prevFPDataIndex: fpDataIndex1)
-        
-        while data.x < m && data.y < n && (isSwapped ? equalityChecker(data.y, data.x) : equalityChecker(data.x, data.y)) {
-            data.x += 1
-            data.y += 1
+        while x < m && y < n && (isSwapped ? equalityChecker(y, x) : equalityChecker(x, y)) {
+            x += 1
+            y += 1
         }
         
-        fpDataVector.append(data)
-        fp[k] = fpDataVector.count
+        let data = FPData(y: y, x: x, prevFPData: prevFPData)
+        lastFPData = data
+        fp[k] = data
     }
 
     // Traces the path and makes a diff-result.
     func makeResult() {
-        // First of all, let fpDataIndex be the index of (fp[delta] - 1)
-        // It was found in last snake, so it equals to the index of the last furthest point.
-        var fpDataIndex = fpDataVector.count - 1
-        var data = fpDataVector[fpDataIndex]
+        // First of all, let data be the lastFPData
+        // It was found in the last snake, so it equals to the last furthest point.
+        // Note that lastFPData is not nil since at least one snake is occurred.
+        // The only one case that no snakes occurs is m == 0,
+        // but it is handled as a special case in the top of detect(_:) and this function is not called.
+        var data: FPData = lastFPData!
         var to0 = isSwapped ? data.y : data.x
         var to1 = isSwapped ? data.x : data.y
-        fpDataIndex = data.prevFPDataIndex
-        while 0 <= fpDataIndex {
-            data = fpDataVector[fpDataIndex]
-            fpDataIndex = data.prevFPDataIndex
+        var prevData = data.prevFPData
+        while prevData != nil {
+            data = prevData!
+            prevData = data.prevFPData
             let from0 = isSwapped ? data.y : data.x
             let from1 = isSwapped ? data.x : data.y
             if from1 - from0 < to1 - to0 {
