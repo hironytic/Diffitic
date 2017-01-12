@@ -88,6 +88,31 @@ class DiffiticTests: XCTestCase {
         XCTAssertEqual(rightIndex6, 11)
         XCTAssertEqual(rightCount6, 5)
     }
+    
+    func testDiff2() {
+        let left = ["dog", "cat", "cow", "sparrow", "swift"]
+        let right = ["horse", "dog", "cat", "cow", "koala", "swift"]
+        
+        let result = diff(leftCount: left.count, rightCount: right.count) { (leftIndex, rightIndex) in
+            return left[leftIndex] == right[rightIndex]
+        }
+        
+        var values: [String] = []
+        for segment in result {
+            switch segment {
+            case let (.identical, leftIndex, leftCount, _, _):
+                values.append(contentsOf: left[leftIndex ..< leftIndex + leftCount])
+            case let (.inserted, _, _, rightIndex, rightCount):
+                values.append(contentsOf: right[rightIndex ..< rightIndex + rightCount])
+            case (.deleted, _, _, _, _):
+                break
+            case let (.replaced, _, _, rightIndex, rightCount):
+                values.append(contentsOf: right[rightIndex ..< rightIndex + rightCount])
+            }
+        }
+        XCTAssertEqual(values, right)
+    }
+    
 }
 
 #if os(Linux)
