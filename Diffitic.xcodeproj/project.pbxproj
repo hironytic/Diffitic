@@ -330,7 +330,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0810;
-				ORGANIZATIONNAME = "Diffitic";
+				ORGANIZATIONNAME = Diffitic;
 				TargetAttributes = {
 					52D6D97B1BEFF229002C0205 = {
 						CreatedOnToolsVersion = 7.1;
@@ -625,7 +625,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Diffitic.Diffitic-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hironytic.diffitic.iOS;
 				PRODUCT_NAME = Diffitic;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -647,7 +647,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Diffitic.Diffitic-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hironytic.diffitic.iOS;
 				PRODUCT_NAME = Diffitic;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -693,7 +693,7 @@
 				INFOPLIST_FILE = Configs/Diffitic.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Diffitic.Diffitic-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hironytic.diffitic.watchOS;
 				PRODUCT_NAME = Diffitic;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -715,7 +715,7 @@
 				INFOPLIST_FILE = Configs/Diffitic.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Diffitic.Diffitic-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hironytic.diffitic.watchOS;
 				PRODUCT_NAME = Diffitic;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -738,7 +738,7 @@
 				INFOPLIST_FILE = Configs/Diffitic.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Diffitic.Diffitic-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hironytic.diffitic.tvOS;
 				PRODUCT_NAME = Diffitic;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -760,7 +760,7 @@
 				INFOPLIST_FILE = Configs/Diffitic.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Diffitic.Diffitic-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hironytic.diffitic.tvOS;
 				PRODUCT_NAME = Diffitic;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -786,7 +786,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Diffitic.Diffitic-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hironytic.diffitic.macOS;
 				PRODUCT_NAME = Diffitic;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -809,7 +809,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Diffitic.Diffitic-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hironytic.diffitic.macOS;
 				PRODUCT_NAME = Diffitic;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
