@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/Diffitic.svg?style=flat)](http://cocoapods.org/pods/Diffitic)
 [![Platform](https://img.shields.io/cocoapods/p/Diffitic.svg?style=flat)](http://cocoapods.org/pods/Diffitic)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-4BC51D.svg)](https://swift.org/package-manager/)
 
 Diffitic is a module for detecting differences between two sequences written in Swift.
 
