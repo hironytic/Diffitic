@@ -228,7 +228,7 @@ private class DiffCore {
         }
         
         // not combined? then append it.
-        result.append(diffType, from0, count0, from1, count1)
+        result.append((diffType, from0, count0, from1, count1))
     }
 }
 
