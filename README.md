@@ -70,7 +70,7 @@ which means,
 
 ## Requirements
 
-- Swift 3.0+
+- Swift 4.0+
 - iOS 8.0+
 - macOS 10.9+
 - watchOS 2.0+
@@ -86,7 +86,7 @@ To install it, simply add the following lines to your Podfile:
 
 ```ruby
 use_frameworks!
-pod "Diffitic"
+pod "Diffitic", '~> 2.0'
 ```
 
 ### Carthage
@@ -95,7 +95,7 @@ Diffitic is available through [Carthage](https://github.com/Carthage/Carthage).
 To install it, simply add the following line to your Cartfile:
 
 ```
-github "hironytic/Diffitic"
+github "hironytic/Diffitic" ~> 2.0
 ```
 
 ### Swift Package Manager
@@ -109,9 +109,9 @@ import PackageDescription
 let package = Package(
     name: "Hello",
     dependencies: [
-        .Package(url: "https://github.com/hironytic/Diffitic.git", majorVersion: 1),
-    ]
-)
+        .package(url: "https://github.com/hironytic/Diffitic.git", from: "2.0.0"),
+    ],
+    ...
 ```
 
 
