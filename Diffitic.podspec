@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Diffitic"
-  s.version      = "1.0.0"
+  s.version      = "2.0.0"
   s.summary      = "Detect differences between two sequences"
   s.description  = <<-DESC
     Diffitic is a module for detecting differences between two sequences written in Swift..
