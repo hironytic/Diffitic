@@ -105,8 +105,10 @@ private class DiffCore {
         // traverse
         let delta = n - m
         for p in 0 ..< m {
-            for k in -p ... delta - 1 {
-                snake(k, equalityChecker)
+            if -p <= delta - 1 {
+                for k in -p ... delta - 1 {
+                    snake(k, equalityChecker)
+                }
             }
             for k in (delta ... delta + p).reversed() {
                 snake(k, equalityChecker)
