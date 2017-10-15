@@ -113,6 +113,44 @@ class DiffiticTests: XCTestCase {
         XCTAssertEqual(values, right)
     }
     
+    func testSameLengthSequences() {
+        let left = [1, 2, 3, 4]
+        let right = [1, 3, 4, 5]
+        
+        let result = diff(leftCount: left.count, rightCount: right.count) { (leftIndex, rightIndex) in
+            return left[leftIndex] == right[rightIndex]
+        }
+        
+        XCTAssertEqual(result.count, 4)
+        
+        let (type0, leftIndex0, leftCount0, rightIndex0, rightCount0) = result[0]
+        XCTAssertEqual(type0, .identical)
+        XCTAssertEqual(leftIndex0, 0)
+        XCTAssertEqual(leftCount0, 1)
+        XCTAssertEqual(rightIndex0, 0)
+        XCTAssertEqual(rightCount0, 1)
+        
+        let (type1, leftIndex1, leftCount1, rightIndex1, rightCount1) = result[1]
+        XCTAssertEqual(type1, .deleted)
+        XCTAssertEqual(leftIndex1, 1)
+        XCTAssertEqual(leftCount1, 1)
+        XCTAssertEqual(rightIndex1, 1)
+        XCTAssertEqual(rightCount1, 0)
+        
+        let (type2, leftIndex2, leftCount2, rightIndex2, rightCount2) = result[2]
+        XCTAssertEqual(type2, .identical)
+        XCTAssertEqual(leftIndex2, 2)
+        XCTAssertEqual(leftCount2, 2)
+        XCTAssertEqual(rightIndex2, 1)
+        XCTAssertEqual(rightCount2, 2)
+        
+        let (type3, leftIndex3, leftCount3, rightIndex3, rightCount3) = result[3]
+        XCTAssertEqual(type3, .inserted)
+        XCTAssertEqual(leftIndex3, 4)
+        XCTAssertEqual(leftCount3, 0)
+        XCTAssertEqual(rightIndex3, 3)
+        XCTAssertEqual(rightCount3, 1)
+    }
 }
 
 #if os(Linux)
