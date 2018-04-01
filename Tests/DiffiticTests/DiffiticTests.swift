@@ -33,7 +33,7 @@ class DiffiticTests: XCTestCase {
         let left =  "abdefggghiJKlmnop"
         let right = "abcdefghijklmnop"
         
-        let result = diff(leftCount: left.characters.count, rightCount: right.characters.count) { (leftIndex, rightIndex) in
+        let result = diff(leftCount: left.count, rightCount: right.count) { (leftIndex, rightIndex) in
             return left[left.index(left.startIndex, offsetBy: leftIndex)] == right[right.index(right.startIndex, offsetBy: rightIndex)]
         }
         
